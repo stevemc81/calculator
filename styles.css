@@ -26,12 +26,25 @@
     text-align: end;
 }
 
+.button-area {
+    width: 100%;
+    display: flex;
+}
+
+.button {
+    width: 40px;
+    height: 40px;
+}
+
 .number-pad {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .number-button {
     border: 1px solid red;
-    width: 40px;
-    height: 40px;
+}
+
+.operator-button {
+    border: 1px solid purple;
 }

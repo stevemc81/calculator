@@ -42,10 +42,12 @@ const numberPad = document.querySelector('.number-pad');
 
 for (let i = 0; i < 10; i++) {
     const button = document.createElement('button');
+    button.classList.add('button');
     button.classList.add('number-button');
     button.textContent = i;
     button.addEventListener('click', () => {
-        console.log(i);
+        const btnValue = parseInt(button.textContent);
+        updateDisplay(btnValue);
     })
     numberPad.appendChild(button);
 };
@@ -53,38 +55,43 @@ for (let i = 0; i < 10; i++) {
 const operatorsPad = document.querySelector('.operators-pad');
 
 const addButton = document.createElement('button');
+addButton.classList.add('button');
 addButton.classList.add('operator-button');
 addButton.textContent = '+';
 addButton.addEventListener('click', () => {
-    console.log('+');
+    updateDisplay('+');
 });
 operatorsPad.appendChild(addButton);
 
 const subtractButton = document.createElement('button');
+subtractButton.classList.add('button');
 subtractButton.classList.add('operator-button');
 subtractButton.textContent = '-';
 subtractButton.addEventListener('click', () => {
-    console.log('-');
+    updateDisplay('-');
 });
 operatorsPad.appendChild(subtractButton);
 
 const multiplyButton = document.createElement('button');
+multiplyButton.classList.add('button');
 multiplyButton.classList.add('operator-button');
 multiplyButton.textContent = 'X';
 multiplyButton.addEventListener('click', () => {
-    console.log('X');
+    updateDisplay('X');
 });
 operatorsPad.appendChild(multiplyButton);
 
 const divideButton = document.createElement('button');
+divideButton.classList.add('button');
 divideButton.classList.add('operator-button');
 divideButton.textContent = '/';
 divideButton.addEventListener('click', () => {
-    console.log('/');
+    updateDisplay('/');
 });
 operatorsPad.appendChild(divideButton);
 
 const equalsButton = document.createElement('button');
+equalsButton.classList.add('button');
 equalsButton.classList.add('operator-button');
 equalsButton.textContent = '=';
 equalsButton.addEventListener('click', () => {
@@ -93,9 +100,28 @@ equalsButton.addEventListener('click', () => {
 operatorsPad.appendChild(equalsButton);
 
 const clearButton = document.createElement('button');
+clearButton.classList.add('button');
 clearButton.classList.add('operator-button');
 clearButton.textContent = 'C';
 clearButton.addEventListener('click', () => {
-    console.log('C');
+    clear();
 });
 operatorsPad.appendChild(clearButton);
+
+// Update display
+let displayCleared = true;
+const display = document.querySelector('.display');
+
+function updateDisplay(char) {
+    if (displayCleared) {
+        display.textContent = '';
+        displayCleared = false;
+    }
+    display.textContent += char;
+}
+
+// Clear calculation
+function clear() {
+    displayCleared = true;
+    display.textContent = 0;
+}

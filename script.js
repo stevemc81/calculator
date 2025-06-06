@@ -16,9 +16,9 @@ function divide(a, b) {
 }
 
 // Calculation
-let num1 = 0;
-let num2 = 0;
-let operator = '+';
+let num1 = null;
+let num2 = null;
+let operator = null;
 
 function operaate(num1, operator, num2) {
     switch (operator) {
@@ -108,7 +108,7 @@ clearButton.addEventListener('click', () => {
 });
 operatorsPad.appendChild(clearButton);
 
-// Update display
+// Update display and execute operation
 let displayCleared = true;
 const display = document.querySelector('.display');
 
@@ -117,11 +117,30 @@ function updateDisplay(char) {
         display.textContent = '';
         displayCleared = false;
     }
-    display.textContent += char;
+
+    // Don't accept operator without num1 first
+    if (typeof char === 'string' && num1 === null) {
+        clear();
+    } else if (typeof char === 'number' && operator === null) {
+        display.textContent += char;
+        num1 = parseInt(display.textContent);
+        console.log(`Num 1: ${num1}`);
+    } else if (typeof char === 'string' && operator === null) {
+        display.textContent += char;
+        operator = char;
+        console.log(`Operator: ${operator}`);
+    } else {
+        display.textContent += char;
+        num2 = parseInt(display.textContent);
+        console.log(`Num 2: ${num2}`);
+    }
 }
 
 // Clear calculation
 function clear() {
     displayCleared = true;
     display.textContent = 0;
+    num1 = null;
+    num2 = null;
+    operator = null;
 }

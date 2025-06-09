@@ -20,19 +20,19 @@ let num1 = null;
 let num2 = null;
 let operator = null;
 
-function operaate(num1, operator, num2) {
+function operate(num1, operator, num2) {
     switch (operator) {
         case '+':
-            add(num1, num2);
+            return add(num1, num2);
             break;
         case '-':
-            subtract(num1, num2);
+            return subtract(num1, num2);
             break;
         case '*':
-            multiply(num1, num2);
+            return multiply(num1, num2);
             break;
         case '/':
-            divide(num1, num2);
+            return divide(num1, num2);
             break;
     };
 };
@@ -95,7 +95,7 @@ equalsButton.classList.add('button');
 equalsButton.classList.add('operator-button');
 equalsButton.textContent = '=';
 equalsButton.addEventListener('click', () => {
-    console.log('=');
+    updateDisplay('=');
 });
 operatorsPad.appendChild(equalsButton);
 
@@ -118,7 +118,6 @@ function updateDisplay(char) {
         displayCleared = false;
     }
 
-    // Don't accept operator without num1 first
     if (typeof char === 'string' && num1 === null) {
         clear();
     } else if (typeof char === 'number' && operator === null) {
@@ -131,15 +130,36 @@ function updateDisplay(char) {
         console.log(`Operator: ${operator}`);
     } else {
         display.textContent += char;
-        num2 = parseInt(display.textContent);
+        let strChar = char.toString();
+        console.log(`strChar: ${strChar}`);
+        if (num2 === null) {
+            num2 = strChar;
+        } else {
+            num2 += strChar;
+        }
         console.log(`Num 2: ${num2}`);
+        num2 = parseInt(num2);
+        console.log(num2);
+    }
+
+    if (char === '=') {
+        console.log('Perform calc');
+        console.log(num1);
+        console.log(operator);
+        console.log(num2);
+        display.textContent = '';
+        display.textContent = operate(num1, operator, num2);
+        // console.log('Result')
+        // console.log(result);
+        //display.textContent = 
+
     }
 }
 
 // Clear calculation
 function clear() {
     displayCleared = true;
-    display.textContent = 0;
+    //display.textContent = 0;
     num1 = null;
     num2 = null;
     operator = null;

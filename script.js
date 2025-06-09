@@ -149,17 +149,13 @@ function updateDisplay(char) {
         console.log(num2);
         display.textContent = '';
         display.textContent = operate(num1, operator, num2);
-        // console.log('Result')
-        // console.log(result);
-        //display.textContent = 
-
     }
 }
 
 // Clear calculation
 function clear() {
     displayCleared = true;
-    //display.textContent = 0;
+    display.textContent = 0;
     num1 = null;
     num2 = null;
     operator = null;

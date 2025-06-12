@@ -3,9 +3,17 @@
     padding: 0;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 .calculator {
     box-sizing: border-box;
     border: 1px solid black;
+    border-radius: 10px;
     background-color: lightgrey;
     width: 400px;
     height: 600px;
@@ -24,6 +32,8 @@
     padding: 8px;
     margin-bottom: 16px;
     text-align: end;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .button-area {
@@ -39,6 +49,8 @@
 .number-pad {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
 .number-button {
